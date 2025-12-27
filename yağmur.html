@@ -1,0 +1,562 @@
+﻿<!doctype html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Yağmur ❤️ Yiğit | Yeni Yıl Mektubu</title>
+    <meta name="theme-color" content="#0b1020" />
+    <style>
+        :root {
+            --bg1: #070a14;
+            --bg2: #0a1230;
+            --glass: rgba(255,255,255,.08);
+            --border: rgba(255,255,255,.18);
+            --text: rgba(255,255,255,.92);
+            --muted: rgba(255,255,255,.70);
+            --shadow: 0 24px 80px rgba(0,0,0,.55);
+            --radius: 24px;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html, body {
+            height: 100%
+        }
+
+        body {
+            margin: 0;
+            font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+            color: var(--text);
+            background: radial-gradient(1200px 800px at 20% 20%, rgba(255,120,180,.10), transparent 60%), radial-gradient(1000px 700px at 80% 30%, rgba(120,180,255,.10), transparent 55%), radial-gradient(900px 900px at 50% 90%, rgba(255,255,255,.06), transparent 60%), linear-gradient(180deg, var(--bg1), var(--bg2));
+            overflow-x: hidden;
+        }
+
+        /* Stars + Snow canvases */
+        #stars {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -3;
+            display: block;
+        }
+
+        #snow {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -2;
+            display: block;
+        }
+
+        /* Soft nebula layer */
+        .mist {
+            position: fixed;
+            inset: -20%;
+            z-index: -1;
+            background: radial-gradient(closest-side at 20% 35%, rgba(255, 140, 200, .10), transparent 65%), radial-gradient(closest-side at 80% 30%, rgba(120, 190, 255, .10), transparent 60%), radial-gradient(closest-side at 55% 85%, rgba(255, 255, 255, .08), transparent 62%);
+            filter: blur(40px);
+            opacity: .9;
+            pointer-events: none;
+            animation: float 14s ease-in-out infinite alternate;
+        }
+
+        @keyframes float {
+            from {
+                transform: translate3d(-1.5%, -1%, 0) scale(1.02);
+            }
+
+            to {
+                transform: translate3d( 1.5%, 1%, 0) scale(1.04);
+            }
+        }
+
+        .wrap {
+            min-height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(18px, 4vw, 44px);
+        }
+
+        .card {
+            width: min(920px, 100%);
+            border-radius: var(--radius);
+            background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            overflow: hidden;
+            position: relative;
+            animation: fadeIn .9s ease both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .ribbon {
+            position: absolute;
+            top: 18px;
+            right: -54px;
+            transform: rotate(25deg);
+            padding: 10px 64px;
+            background: rgba(255, 90, 140, .20);
+            border: 1px solid rgba(255,255,255,.22);
+            box-shadow: 0 10px 30px rgba(0,0,0,.35);
+            letter-spacing: .4px;
+            font-weight: 600;
+            font-size: 13px;
+            color: rgba(255,255,255,.88);
+        }
+
+        header {
+            padding: clamp(20px, 3.6vw, 34px);
+            border-bottom: 1px solid rgba(255,255,255,.12);
+            display: flex;
+            gap: 14px;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .title {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            min-width: 260px;
+        }
+
+            .title h1 {
+                margin: 0;
+                font-size: clamp(20px, 2.6vw, 30px);
+                letter-spacing: .2px;
+            }
+
+            .title p {
+                margin: 0;
+                color: var(--muted);
+                font-size: 14px;
+                line-height: 1.4;
+            }
+
+        .chips {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .chip {
+            padding: 9px 12px;
+            border-radius: 999px;
+            background: rgba(255,255,255,.08);
+            border: 1px solid rgba(255,255,255,.14);
+            color: rgba(255,255,255,.86);
+            font-size: 13px;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            user-select: none;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,.75);
+            box-shadow: 0 0 16px rgba(255,255,255,.55);
+        }
+
+        main {
+            padding: clamp(22px, 3.6vw, 40px);
+            display: grid;
+            grid-template-columns: 1.15fr .85fr;
+            gap: clamp(16px, 3vw, 28px);
+        }
+
+        @media (max-width: 860px) {
+            main {
+                grid-template-columns: 1fr
+            }
+
+            .chips {
+                justify-content: flex-start
+            }
+        }
+
+        .letter {
+            padding: clamp(18px, 2.8vw, 28px);
+            border-radius: 20px;
+            background: rgba(0,0,0,.12);
+            border: 1px solid rgba(255,255,255,.12);
+            position: relative;
+            overflow: hidden;
+        }
+
+            .letter:before {
+                content: "";
+                position: absolute;
+                inset: -60px;
+                background: radial-gradient(circle at 30% 20%, rgba(255,120,180,.14), transparent 55%), radial-gradient(circle at 70% 80%, rgba(120,190,255,.12), transparent 60%);
+                filter: blur(30px);
+                opacity: .9;
+                pointer-events: none;
+            }
+
+            .letter .content {
+                position: relative;
+                z-index: 1;
+            }
+
+            .letter .salute {
+                font-size: 16px;
+                color: rgba(255,255,255,.88);
+                margin: 0 0 14px 0;
+            }
+
+            .letter p {
+                margin: 0 0 12px 0;
+                color: rgba(255,255,255,.88);
+                line-height: 1.85;
+                font-size: 15.6px;
+            }
+
+                .letter p.muted {
+                    color: rgba(255,255,255,.78);
+                }
+
+        .signature {
+            margin-top: 18px;
+            padding-top: 14px;
+            border-top: 1px dashed rgba(255,255,255,.22);
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+            .signature .name {
+                font-weight: 700;
+                letter-spacing: .2px;
+                font-size: 16px;
+            }
+
+            .signature .small {
+                color: rgba(255,255,255,.72);
+                font-size: 13px;
+            }
+
+        .side {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .panel {
+            padding: 18px;
+            border-radius: 18px;
+            background: rgba(255,255,255,.06);
+            border: 1px solid rgba(255,255,255,.12);
+        }
+
+            .panel h2 {
+                margin: 0 0 10px 0;
+                font-size: 15px;
+                letter-spacing: .2px;
+                color: rgba(255,255,255,.88);
+            }
+
+        .hint {
+            margin: 0;
+            color: rgba(255,255,255,.68);
+            font-size: 12.8px;
+            line-height: 1.5;
+        }
+
+        footer {
+            padding: 16px 22px 22px;
+            color: rgba(255,255,255,.60);
+            font-size: 12.6px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+            border-top: 1px solid rgba(255,255,255,.10);
+        }
+
+        .heart {
+            display: inline-block;
+            filter: drop-shadow(0 0 18px rgba(255,90,140,.28));
+            animation: beat 1.6s ease-in-out infinite;
+            transform-origin: center;
+        }
+
+        @keyframes beat {
+            0%,100% {
+                transform: scale(1)
+            }
+
+            50% {
+                transform: scale(1.08)
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="stars"></canvas>
+    <canvas id="snow"></canvas>
+    <div class="mist"></div>
+
+    <!-- Duygusal müzik (otomatik başlatmayı dener) -->
+    <audio id="bgMusic" loop preload="auto" autoplay playsinline>
+        <source src="https://cdn.pixabay.com/download/audio/2022/10/30/audio_4b4f56c3bb.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="wrap">
+        <article class="card" aria-label="Yeni yıl mektubu">
+            <div class="ribbon">Yeni Yıl • <span id="yearRibbon">2026</span></div>
+
+            <header>
+                <div class="title">
+                    <h1>Sevgilim <span id="toName">Yağmur</span> için</h1>
+                    <p>Kalbimden gelen bir yılbaşı mektubu…</p>
+                </div>
+
+                <div class="chips" aria-label="Etiketler">
+                    <div class="chip"><span class="dot"></span><span id="dateText">1 Ocak 2026</span></div>
+                    <div class="chip"><span class="dot"></span><span>Her şeyin en güzeli sen</span></div>
+                </div>
+            </header>
+
+            <main>
+                <section class="letter">
+                    <div class="content">
+                        <p class="salute"><strong>Canım sevgilim Yağmur,</strong></p>
+
+                        <p>
+                            Yeni bir yıla girerken takvim yaprakları değişiyor belki ama benim içimde değişmeyen tek şey var:
+                            <strong>sana olan sevgim</strong>. Bu yıl bana çok şey öğretti ama en çok da seni öğretti…
+                            Sevilmenin ne demek olduğunu, birinin varlığının insanın içini nasıl ısıttığını, gecenin en sessiz anlarında
+                            bile bir kalbin başka bir kalple nasıl konuşabildiğini.
+                        </p>
+
+                        <p class="muted">
+                            Sen hayatıma girdiğinden beri bazı şeyler daha anlamlı. Gülüşüm daha gerçek, hayallerim daha cesur.
+                            Bazen hiçbir şey söylemeden sadece varlığınla beni sakinleştiriyorsun. Bazen tek bir mesajın,
+                            bütün yorgunluğumu alıp götürüyor. Seninle anladım ki; sevgi sadece mutlu anlarda değil,
+                            zor zamanlarda da “buradayım” diyebilmekmiş.
+                        </p>
+
+                        <p>
+                            Bu yıl belki her şey istediğimiz gibi olmadı. Yorulduk, kırıldık, bazen sustuk…
+                            Ama ne olursa olsun birbirimizi bırakmadık. İşte bu yüzden sana minnettarım.
+                            Çünkü sen sadece sevdiğim insan değil, <strong>dayanağım</strong>, <strong>güvendiğim liman</strong>,
+                            <strong>kalbimin evi</strong> oldun.
+                        </p>
+
+                        <p>
+                            Yeni yıldan tek bir dileğim var:<br />
+                            <strong>Elim elinde olsun.</strong><br />
+                            <strong>Kalbim kalbinde kalsın.</strong><br />
+                            Zaman bizi nereye götürürse götürsün, biz “biz” kalalım.
+                        </p>
+
+                        <p class="muted">
+                            Eğer bir gün hayat çok zor gelirse, lütfen bunu hatırla:
+                            Bir yerde, seni her haliyle seven, sen gülünce mutlu olan, sen üzülünce içi sızlayan biri var.
+                            O kişi <strong>benim</strong>.
+                        </p>
+
+                        <p>
+                            İyi ki varsın.<br />
+                            İyi ki benim sevgilimsin.<br />
+                            İyi ki bu yeni yıla <strong>senin adını kalbimde taşıyarak</strong> giriyorum.
+                        </p>
+
+                        <p>
+                            <strong>Yeni yılımız kutlu olsun sevgilim…</strong><br />
+                            Nice yıllara, nice anılara, nice “biz”lere <span class="heart">🤍</span>
+                        </p>
+
+                        <div class="signature">
+                            <div class="name" id="fromName">— Yiğit</div>
+                            <div class="small">Seni her şeyden çok seven…</div>
+                        </div>
+                    </div>
+                </section>
+
+                <aside class="side">
+                    <div class="panel">
+                        <h2>Küçük sürpriz</h2>
+                        <p class="hint">Karta tıkla: yıldızlar kısa süre parlasın ✨</p>
+                    </div>
+                </aside>
+            </main>
+
+            <footer>
+                <span>Bu sayfa sadece sizin hikâyeniz için…</span>
+                <span>❤️ <span id="yearSpan">2026</span></span>
+            </footer>
+        </article>
+    </div>
+
+    <script>
+        // ---- Sabit isimler (Yağmur & Yiğit) ----
+        const toName = document.getElementById("toName");
+        const fromName = document.getElementById("fromName");
+        const dateText = document.getElementById("dateText");
+        const yearSpan = document.getElementById("yearSpan");
+        const yearRibbon = document.getElementById("yearRibbon");
+
+        toName.textContent = "Yağmur";
+        fromName.textContent = "— Yiğit";
+        dateText.textContent = "1 Ocak 2026";
+        yearSpan.textContent = "2026";
+        yearRibbon.textContent = "2026";
+
+        // --------- Stars background ----------
+        const starCanvas = document.getElementById("stars");
+        const ctx = starCanvas.getContext("2d");
+
+        let w, h, stars, twinkles = 1;
+
+        function resizeStars() {
+            w = starCanvas.width = window.innerWidth * devicePixelRatio;
+            h = starCanvas.height = window.innerHeight * devicePixelRatio;
+            starCanvas.style.width = window.innerWidth + "px";
+            starCanvas.style.height = window.innerHeight + "px";
+            makeStars();
+        }
+        window.addEventListener("resize", resizeStars);
+
+        function rand(min, max) { return Math.random() * (max - min) + min; }
+
+        function makeStars() {
+            const count = Math.floor((window.innerWidth * window.innerHeight) / 9000);
+            stars = Array.from({ length: Math.min(Math.max(count, 120), 260) }, () => ({
+                x: rand(0, w),
+                y: rand(0, h),
+                r: rand(0.6, 1.8) * devicePixelRatio,
+                a: rand(0.25, 0.95),
+                s: rand(0.15, 0.65) * devicePixelRatio,
+                p: rand(0, Math.PI * 2)
+            }));
+        }
+
+        function drawStars() {
+            ctx.clearRect(0, 0, w, h);
+
+            const g = ctx.createRadialGradient(w * 0.5, h * 0.2, 0, w * 0.5, h * 0.2, Math.max(w, h));
+            g.addColorStop(0, "rgba(255,255,255,0.02)");
+            g.addColorStop(1, "rgba(0,0,0,0)");
+            ctx.fillStyle = g;
+            ctx.fillRect(0, 0, w, h);
+
+            for (const st of stars) {
+                const t = (Date.now() / 1000) * st.s;
+                const alpha = st.a * (0.65 + 0.35 * Math.sin(t + st.p)) * twinkles;
+
+                ctx.beginPath();
+                ctx.arc(st.x, st.y, st.r, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255,255,255,${Math.max(0, Math.min(1, alpha))})`;
+                ctx.fill();
+
+                st.y += 0.06 * devicePixelRatio;
+                if (st.y > h + 10) st.y = -10;
+            }
+
+            twinkles += (1 - twinkles) * 0.06;
+            requestAnimationFrame(drawStars);
+        }
+
+        document.querySelector(".card").addEventListener("click", () => {
+            twinkles = 1.8;
+        });
+
+        resizeStars();
+        drawStars();
+
+        // --------- Snow background ----------
+        const snowCanvas = document.getElementById("snow");
+        const sctx = snowCanvas.getContext("2d");
+
+        let sw, sh, flakes = [];
+
+        function resizeSnow() {
+            sw = snowCanvas.width = window.innerWidth * devicePixelRatio;
+            sh = snowCanvas.height = window.innerHeight * devicePixelRatio;
+            snowCanvas.style.width = window.innerWidth + "px";
+            snowCanvas.style.height = window.innerHeight + "px";
+            flakes = Array.from({ length: 140 }, () => ({
+                x: Math.random() * sw,
+                y: Math.random() * sh,
+                r: Math.random() * 2.6 + 0.7,
+                s: Math.random() * 0.9 + 0.25,
+                drift: (Math.random() * 0.6 - 0.3) * devicePixelRatio
+            }));
+        }
+        window.addEventListener("resize", resizeSnow);
+        resizeSnow();
+
+        function drawSnow() {
+            sctx.clearRect(0, 0, sw, sh);
+            for (const f of flakes) {
+                sctx.beginPath();
+                sctx.arc(f.x, f.y, f.r * devicePixelRatio, 0, Math.PI * 2);
+                sctx.fillStyle = "rgba(255,255,255,0.80)";
+                sctx.fill();
+
+                f.y += f.s * devicePixelRatio;
+                f.x += f.drift * 0.25;
+
+                if (f.y > sh + 10) {
+                    f.y = -10;
+                    f.x = Math.random() * sw;
+                }
+                if (f.x < -20) f.x = sw + 20;
+                if (f.x > sw + 20) f.x = -20;
+            }
+            requestAnimationFrame(drawSnow);
+        }
+        drawSnow();
+
+        // --------- Music (autoplay attempt, no buttons) ----------
+        const music = document.getElementById("bgMusic");
+
+        (async () => {
+            try {
+                // En "kendi başlar" yaklaşımı: önce sessiz başlatmayı dene
+                music.muted = true;
+                music.volume = 0.35;
+                await music.play();
+
+                // Biraz sonra sesi açmayı dene (tarayıcı izin verirse)
+                setTimeout(() => {
+                    try {
+                        music.muted = false;
+                    } catch (_) { }
+                }, 900);
+
+            } catch (e) {
+                // Tarayıcı engellerse sessizce geç (buton istemediğin için mesaj göstermiyoruz)
+                // İstersen buraya küçük bir not paneli ekleyebilirim.
+            }
+        })();
+    </script>
+</body>
+</html>
